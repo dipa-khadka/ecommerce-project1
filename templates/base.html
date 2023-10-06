@@ -25,7 +25,7 @@
             <!-- Center elements -->
             <div class="order-lg-last col-lg-5 col-sm-8 col-8">
               <div class="d-flex float-end">
-                <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fa fa-user-alt m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Sign in</p> </a>
+                <a href="{% url 'login_page' %}" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fa fa-user-alt m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Sign in</p> </a>
                 <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fa fa-heart m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Wishlist</p> </a>
                 <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fa fa-shopping-cart m-1 me-md-2"></i><p class="d-none d-md-block mb-0">My cart</p> </a>
               </div>
@@ -118,25 +118,7 @@
         <!-- Container wrapper -->
       </nav>
       <!-- Navbar -->
-      <!-- Jumbotron -->
-      <div class="bg-primary text-white py-5">
-        <div class="container py-5">
-          <h1>
-            Best products & <br />
-            brands in our store
-          </h1>
-          <p>
-            Trendy Products, Factory Prices, Excellent Service
-          </p>
-          <button type="button" class="btn btn-outline-light">
-            Learn more
-          </button>
-          <button type="button" class="btn btn-light shadow-0 text-primary pt-2 border border-white">
-            <span class="pt-1">Purchase now</span>
-          </button>
-        </div>
-      </div>
-      <!-- Jumbotron -->
+     
     </header>
     {% block content %}
 
