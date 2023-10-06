@@ -1,11 +1,15 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends "base.html" %}
+ {% block content %}
+   
+ <!--Main Navigation-->
+
 <!-- Products -->
 <section>
   <div class="container my-5">
     <header class="mb-4">
       <h3>New products</h3>
     </header>
+
     <div class="row">
       <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
         <div class="card w-100 my-2 shadow-2-strong">
@@ -15,7 +19,7 @@
             <p class="card-text">$790.50</p>
             <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
               <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
-              <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i class="fa fa-eye text-secondary px-1"></i></a>
+              <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i class="fas fa-heart fa-lg text-secondary px-1"></i></a>
             </div>
           </div>
         </div>
@@ -41,7 +45,7 @@
             <p class="card-text">$120.00</p>
             <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
               <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
-              <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i class="fa fa-eye"></i></a>
+              <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i class="fas fa-heart fa-lg text-secondary px-1"></i></a>
             </div>
           </div>
         </div>
@@ -115,4 +119,7 @@
   </div>
 </section>
 <!-- Products -->
-{% endblock %}
+
+
+
+ {% endblock %} 
