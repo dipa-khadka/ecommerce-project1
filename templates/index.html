@@ -141,4 +141,114 @@
 
 
 
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table</title>
+</head>
+<body>
+  <p></p>
+  <table border="1">
+
+    <tr>
+      <th rowspan="3">Name</th>
+      <th colspan="4">Details</th>
+    </tr>
+
+    <tr>
+      <th rowspan="2">Nationality</th>
+      <th rowspan="2">Cast</th>
+      <th colspan="2">Address</th>
+   </tr>
+   
+   <tr>
+    <th>Temporary</th>
+    <th>Peremanant</th>
+   </tr>
+
+   <tr>
+    <td>Sita</td>
+    <td>Nepali</td>
+    <td>Xettri</td>
+    <td>Lalmatiya</td>
+    <td>Lalmatiya</td>
+   </tr>
+
+   <tr>
+    <td>Gita</td>
+    <td>Korean</td>
+    <td>Jeon</td>
+    <td>Seoul</td>
+    <td>Seoul</td>
+   </tr>
+
+  </table>
+
+  <h1>Student Form:</h1>
+  <form>
+   USERNAME:<br><br>
+   first Name:<input type="username" name="firstname"/>
+   <br><br>
+   last Name:<input type="username" name="lastname"/>
+    <br><br>
+    password:<input type="password" name="password"/>
+    <br><br><br>
+  GENDER:<br><br>
+   MALE:<input type="radio" name="male" value="male"/>
+   FEMALE:<input type="radio" name="female" value="female"/><br><br>
+   OR:<br><br>
+   GENDER:<br><br>
+   <select name="dropdown"><br><br>
+    <option value="male" selected>male</option>
+    <option value="female" selected>female</option><br>
+    <br><br>
+   </select><br><br>
+   <input type="submit" name="submit" value="submit"/>
+   <input type="reset" name="set" vallue="reset"/>
+  </form>
+
+  
+    <style>
+      .container {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+      .child {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+      @media screen and (max-width:768px) {
+        .container{
+            flex-direction: column;
+        }
+      }
+    </style>
+  
+    <div class="container">
+      <div class="child">1</div>
+      <div class="child">2</div>
+      <div class="child">3</div>
+    </div>
+    <h4>USERNAME</h4><br><br>
+    First name:<input type="name" name="username" placeholder="Enter your first name"/><br><br>
+    Last name:<input type="name" name="username" placeholder="Entner your nlast name"/><br><br>
+    password:<input type="text" name="password" placeholder="Enter your password"/><br><br>
+    Contact Number:<input type="text" name="contact number" placeholder="enter your contact number"/>
+
+  
+
+  
+</body>
+</html>
+
+
+
  {% endblock %} 
