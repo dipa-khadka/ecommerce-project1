@@ -10,3 +10,7 @@ def user_login(request):
  
 def user_register(request):
     return render(request, "register.html")
+
+def user_profile(request):
+    return render(request, "profile.html")
+
