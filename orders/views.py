@@ -8,7 +8,7 @@ def shopping_cart(request):
 def checkout(request):
     return render(request, "checkout.html")
 
-def orders_summary(requeust):
+def order_summary(requeust):
     return render(requeust, "orders.html")
 
 
