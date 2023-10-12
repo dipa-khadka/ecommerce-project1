@@ -15,6 +15,6 @@ class Profile(models.Model):
     class Meta:
         db_table = 'profile'
         
-    # def __str__(self):
-    #     return self.User.username
+    def __str__(self):
+        return self.user.username
     

@@ -11,7 +11,26 @@ def home(request):
 
 
 def user_login(request):
+    if request.method == "POST":
+        email= request.POST.get("email")
+        password = request.POST.get("password")
+        print("Email:",email,"Password:",password)
+        check_user = User.objects.filter(email=email)
+        if not check_user.exists():
+            error = "Account does not exists"
+            messages.error(request,error)
+            return redirect("/login")
+        is_valid_user = authenticate(username=check_user[0].username,password=password)
+        if is_valid_user:
+            login(request,is_valid_user)
+            return redirect("/profile")
+        else:
+            error="Invalid Email or Password"
+            messages.error(request,error)
+            return redirect("/login")
     return render(request, "login.html")
+ 
+ 
  
 def user_register(request):
     form = UserRegisterForm()
@@ -40,6 +59,7 @@ def user_register(request):
             user = User.objects.create(**user_account_data)
             user.set_password(password)
             user.save()
+            
             profile_data = {
                 "user": user,
                 "contact": form_data.cleaned_data["contact"],
@@ -47,18 +67,23 @@ def user_register(request):
                 "city": form_data.cleaned_data["city"],
                 "profile_pic": "N/A"
             }
-            profile = profile.objects.create(**profile_data)
-        return redirect("/login")
+            profile = Profile.objects.create(**profile_data)
+            return redirect("/login")
+        else:
+            error = form_data.errors
+            messages.error(request,error)
+            return redirect("/register")
     return render(request, "register.html", {"form": form})
 
 
 @login_required
 def user_profile(request):
-    # equivalent sql: SELECT * FROM profile WHERE user_id=1
-    # get profile of user with id user_id
-    Profile = Profile .objects.get(user_id=user_id)
-    context = {"Profile": Profile}
-    return render(request, "profile.html")
+    User_id = request.user.pk
+    # # equivalent sql: SELECT * FROM profile WHERE user_id=1
+    # # get profile of user with id user_id
+    profile = Profile .objects.get(user_id=User_id)
+    # context = {"Profile": profile}
+    return render(request, "profile.html",{"profile":profile})
 
 def user_logout(request):
     logout(request)

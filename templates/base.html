@@ -4,7 +4,7 @@
   <title>this is ecommerce website</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://path/to/font-awesome/css/font-awesome.min.css">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -27,14 +27,14 @@
             <!-- Center elements -->
             <div class="order-lg-last col-lg-5 col-sm-8 col-8">
               <div class="d-flex float-end">
+                {% if not request.user.is_authenticated %}
                 <a href="{% url 'login_page' %}" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target=""> <i class="fa fa-user m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Sign in</p> </a>
-
+                {% endif %}
                 <a href="{% url 'cart_page' %}" class="border rounded py-1 px-3 nav-link d-flex align-items-center" target=""> <i class="fa fa-shopping-cart m-1 me-md-2"></i><p class="d-none d-md-block mb-0">My cart</p> </a>
 
-               
-                <a href="{% url 'signout_page' %}" class="border rounded py-1 px-3 nav-link d-flex align-items-center" target=""> <i class="fa fa-sign-out" aria-hidden="true"></i></i><p class="d-none d-md-block mb-0">Sign Out</p> </a>
-             
-                
+               {% if request.user.is_authenticated %}
+                <a href="{% url 'logout_page' %}" class="border rounded py-1 px-3 nav-link d-flex align-items-center" target=""> <i class="fa fa-sign-out"></i></i><p class="d-none d-md-block mb-0">Sign Out</p> </a>
+                {% endif %}
               </div>
             </div>
             <!-- Center elements -->
