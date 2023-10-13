@@ -5,9 +5,11 @@ from django.contrib import messages
 from django.contrib.auth import  authenticate, logout, login
 from django.contrib.auth.decorators import login_required
 from users.helper import save_file
+from products.models import Products
 
 # Create your views here.
 def home(request):
+    # products = Products.objects.all()
     return render(request, template_name="index.html")
 
 
