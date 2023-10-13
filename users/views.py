@@ -4,6 +4,7 @@ from users.models import User,Profile
 from django.contrib import messages
 from django.contrib.auth import  authenticate, logout, login
 from django.contrib.auth.decorators import login_required
+from users.helper import save_file
 
 # Create your views here.
 def home(request):
@@ -78,17 +79,41 @@ def user_register(request):
 
 @login_required
 def user_profile(request):
-    User_id = request.user.pk
-    # # equivalent sql: SELECT * FROM profile WHERE user_id=1
-    # # get profile of user with id user_id
-    profile = Profile .objects.get(user_id=User_id)
-    # context = {"Profile": profile}
-    return render(request, "profile.html",{"profile":profile})
+    user_id = request.user.pk   # get user id of logged in user
+    # equivalent sql: SELECT * FROM profile WHERE user_id = 1
+    # get profile of user with id user_id
+    profile = Profile.objects.get(user_id=user_id)
+    if request.method == "POST":
+        city = request.POST.get("city")
+        address = request.POST.get("address")
+        contact = request.POST.get("contact")
+        profile_pic = request.FILES.get("profile_img")
+        profile_pic_url = save_file(request, profile_pic)
+        print("City: ", city, "Address: ", address, "Contact: ", contact, "Profile Pic: ", profile_pic_url)
+        if city != profile.city:
+            profile.city = city
+        if address != profile.address:
+            profile.address = address
+        if contact != profile.contact:
+            profile.contact = contact
+        if profile_pic_url is not None:
+            if profile_pic_url != profile.profile_pic:
+                profile.profile_pic = profile_pic_url
+        profile.save()
+        return redirect("/profile")
+    # if profile.profile_pic == "N/A":
+    #     profile.profile_pic = "https://i.pinimg.com/736x/3f/94/70/3f9470b34a8e3f526dbdb022f9f19cf7.jpg"
+    context = {"profile": profile}
+    return render(request, "profile.html", context)
+
+   
+  
+    # return render(request, "profile.html",{"profile":profile})
 
 def user_logout(request):
     logout(request)
     return redirect("/login")
     
-    
+  
 
 

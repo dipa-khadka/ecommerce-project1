@@ -5,10 +5,16 @@
 			{% csrf_token %}
 			<div class="row">
 				<div class="col-lg-4">
-					<div class="card">
-						<div class="card-body">
+					<div class="card mb-4">
+
+						<div class="card-body text--center">
+							{% if profile.profile_pic == 'N/A' %}
+							<img src="https://i.pinimg.com/736x/3f/94/70/3f9470b34a8e3f526dbdb022f9f19cf7.jpg" alt="avatar"
+							     class="rounded-circle img-fluid" style="width: 150px;">
+					     {% else %}
+							
 							<div class="d-flex flex-column align-items-center text-center">
-								<img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+								<img src="{{profile.profile_pic}}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
 								<div class="mt-3">
 									<h4>{{ profile.user.username }}</h4>
 									<label for="exampleFormControlFile1">Upload Image</label>
@@ -17,8 +23,7 @@
 							</div>
 							<hr class="my-4">
 							<ul class="list-group list-group-flush">
-						
-							</ul>
+		                  </ul>
 						</div>
 					</div>
 				</div>
