@@ -4,13 +4,13 @@ from users.models import User,Profile
 from django.contrib import messages
 from django.contrib.auth import  authenticate, logout, login
 from django.contrib.auth.decorators import login_required
-# from users.helper import save_file
-# from products.models import Products
+from users.helper import save_file
+from products.models import Products
 
 # Create your views here.
 def home(request):
-    # products = Products.objects.all()
-    return render(request, template_name="index.html")
+    products = Products.objects.all()
+    return render(request, template_name="index.html",context={"products": products })
 
 
 def user_login(request):
@@ -64,11 +64,10 @@ def user_register(request):
             user.save()
             
             profile_data = {
-                "user": user,
                 "contact": form_data.cleaned_data["contact"],
                 "address": form_data.cleaned_data["address"],
                 "city": form_data.cleaned_data["city"],
-                "profile_pic": "N/A"
+                "profile_pic": "https://i.pinimg.com/736x/3f/94/70/3f9470b34a8e3f526dbdb022f9f19cf7.jpg"
             }
             profile = Profile.objects.create(**profile_data)
             return redirect("/login")
@@ -85,9 +84,28 @@ def user_profile(request):
     # equivalent sql: SELECT * FROM profile WHERE user_id = 1
     # get profile of user with id user_id
     profile = Profile.objects.get(user_id=user_id)
+    if request.method == "POST":
+        city = request.POST.get("city")
+        address = request.POST.get("address")
+        contact = request.POST.get("contact")
+        profile_pic = request.FILES.get("profile_img")
+        profile_pic_url = save_file(request, profile_pic)
+        print("City: ", city, "Address: ", address, "Contact: ", contact, "Profile Pic: ", profile_pic_url)
+        if city != profile.city:
+            profile.city = city
+        if address != profile.address:
+            profile.address = address
+        if contact != profile.contact:
+            profile.contact = contact
+        if profile_pic_url is not None:
+            if profile_pic_url != profile.profile_pic:
+                profile.profile_pic = profile_pic_url
+        profile.save()
+        return redirect("/profile")
+    # if profile.profile_pic == "N/A":
+    #     profile.profile_pic = "https://i.pinimg.com/736x/3f/94/70/3f9470b34a8e3f526dbdb022f9f19cf7.jpg"
     context = {"profile": profile}
     return render(request, "profile.html", context)
-
    
   
     # return render(request, "profile.html",{"profile":profile})
