@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from products.models import Products
 
 # Create your views here.
 
@@ -7,4 +8,6 @@ def new_arrival_product(request):
 
 
 def product_detail(request, product_id):
-    return render(request, "product-detail.html")
+    product = Products.objects.get(id=product_id)
+    context = {"product" : product}
+    return render(request, "product-detail.html" ,context)
