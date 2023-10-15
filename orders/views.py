@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def shopping_cart(request):
-    carts = Cart.objects.filtler(user=request.user).order_by("created_at")
+    carts = Cart.objects.filter(user=request.user).order_by("created_at")
     context = {"carts": carts}
     return render(request, "carts.html", context)
 
