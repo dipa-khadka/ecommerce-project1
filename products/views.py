@@ -10,4 +10,4 @@ def new_arrival_product(request):
 def product_detail(request, product_id):
     product = Products.objects.get(id=product_id)
     context = {"product" : product}
-    return render(request, "product-detail.html" ,context)
+    return render(request, "product-detail.html" , context)
